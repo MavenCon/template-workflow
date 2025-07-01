@@ -5,12 +5,41 @@
  */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
 // 仓库根目录
 const REPO_ROOT = path.join(__dirname);
 // 要处理的目录列表
 const TARGET_DIRS = ['releases', 'plugins', 'snapshots'];
 // 输出的JSON文件名
 const OUTPUT_JSON_FILE = 'index-cache.json';
+
+/**
+ * 计算文件内容的哈希值
+ * @param {string} filePath 文件路径
+ * @returns {string} 文件内容的MD5哈希值
+ */
+function getFileHash(filePath) {
+	try {
+		if (fs.statSync(filePath).isDirectory()) {
+			return 'directory';
+		}
+		const content = fs.readFileSync(filePath);
+		return crypto.createHash('md5').update(content).digest('hex').substring(0, 8);
+	} catch (error) {
+		return 'unknown';
+	}
+}
+
+/**
+ * 格式化时间，去掉毫秒精度
+ * @param {Date} date 日期对象
+ * @returns {string} 格式化的时间字符串
+ */
+function formatTime(date) {
+	return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+}
+
 /**
  * 递归扫描目录，生成目录结构数据
  * @param {string} dirPath 要扫描的目录路径
@@ -28,11 +57,19 @@ function scanDirectory(dirPath, relativePath = '') {
 		const itemPath = path.join(dirPath, item);
 		const stats = fs.statSync(itemPath);
 		const isDirectory = stats.isDirectory();
+
 		// 如果是根目录，只添加指定的目标目录
 		if (relativePath === '' && !TARGET_DIRS.includes(item)) continue;
-		// 目录的size为0，文件则为实际大小
+
+		// 使用文件哈希和格式化时间
+		const fileHash = isDirectory ? 'dir' : getFileHash(itemPath);
+		const lastModified = formatTime(stats.mtime);
+
 		result.push({
-			name: item, lastModified: stats.mtime.toISOString(), size: isDirectory ? 0 : stats.size
+			name: item,
+			lastModified: lastModified,
+			size: isDirectory ? 0 : stats.size,
+			hash: fileHash
 		});
 	}
 	return result;
@@ -76,16 +113,42 @@ function generateRepositoryStructure() {
  */
 function saveStructureToFile(repoStructure) {
 	try {
+		const outputPath = path.join(__dirname, OUTPUT_JSON_FILE);
+
+		// 检查是否存在现有缓存文件
+		let existingStructure = null;
+		if (fs.existsSync(outputPath)) {
+			try {
+				const existingContent = fs.readFileSync(outputPath, 'utf8');
+				existingStructure = JSON.parse(existingContent);
+			} catch (error) {
+				console.warn('无法读取现有缓存文件，将创建新文件');
+			}
+		}
+
+		// 比较新旧结构是否相同
+		if (existingStructure) {
+			const newStructureStr = JSON.stringify(repoStructure);
+			const existingStructureStr = JSON.stringify(existingStructure);
+
+			if (newStructureStr === existingStructureStr) {
+				console.log('仓库结构没有变化，跳过缓存文件更新');
+				return;
+			}
+		}
+
 		// 转换为JSON字符串
 		const repoStructureJson = JSON.stringify(repoStructure, null, 2);
-		const outputPath = path.join(__dirname, OUTPUT_JSON_FILE);
+
 		// 写入到文件
 		fs.writeFileSync(outputPath, repoStructureJson);
-		console.log(`Repository structure data has been saved to ${outputPath}`);
+		console.log(`仓库结构数据已保存到 ${outputPath}`);
 	} catch (error) {
-		console.error(`Error saving structure to file:`, error);
+		console.error(`保存结构数据时出错:`, error);
 	}
 }
+
 // 执行生成过程
+console.log('开始生成仓库结构数据...');
 saveStructureToFile(generateRepositoryStructure());
-console.log('Repository structure data generation completed!');
+console.log('仓库结构数据生成完成！');
