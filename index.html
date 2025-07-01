@@ -888,7 +888,9 @@
 			// 从baseRepoUrl中提取真正的仓库根URL（移除路径中的仓库类型部分）
 			function getRepoRootUrl(url) {
 				// 首先移除URL中的哈希片段，因为哈希不是实际的服务器路径
-				const urlWithoutHash = url.split('#')[0];
+				let urlWithoutHash = url.split('#')[0];
+				// 移除末尾的斜杠，避免后续处理时出现双斜杠
+				urlWithoutHash = urlWithoutHash.replace(/\/+$/, '');
 				const repoTypes = ['plugins', 'releases', 'snapshots'];
 				for (const type of repoTypes) {
 					const typeIndex = urlWithoutHash.lastIndexOf('/' + type);
