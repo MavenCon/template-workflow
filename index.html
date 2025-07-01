@@ -112,6 +112,102 @@
             flex-grow: 1;
         }
 
+        /* 构建脚本卡片样式 */
+        .repo-details-card {
+            background-color: var(--body-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 12px;
+            position: relative; /* 相对定位 */
+            margin-bottom: 15px; /* 在卡片下方添加间距 */
+            max-width: 100%; /* 确保不超过父容器宽度 */
+            overflow: hidden; /* 防止内容溢出 */
+            box-sizing: border-box; /* 确保padding和border包含在width内 */
+        }
+
+        /* 调整面包屑导航，为卡片留出空间 */
+        .breadcrumb-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            width: 100%; /* 让面包屑占满整行 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .card-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 8px;
+        }
+
+        .card-tab {
+            padding: 4px 8px;
+            cursor: pointer;
+            flex-grow: 1;
+            text-align: center;
+            border-bottom: 2px solid transparent;
+            font-size: 0.8rem;
+        }
+
+        .card-tab.active {
+            border-bottom: 2px solid var(--link-color);
+            font-weight: 500;
+        }
+
+        .card-content {
+            position: relative;
+            padding: 10px 40px 10px 10px;
+            background-color: var(--body-bg);
+            border-radius: 0 0 4px 4px;
+            overflow: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-content pre {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap; /* 允许代码换行 */
+            word-break: break-word; /* 防止溢出 */
+            margin: 0; /* 移除默认边距 */
+            max-width: calc(100% - 30px); /* 确保不会与按钮重叠 */
+            color: var(--text-color); /* 使用主题文本颜色 */
+            line-height: 1.5; /* 增加行高以提高可读性 */
+        }
+
+        /* 在小屏幕上的卡片布局 */
+        @media (max-width: 768px) {
+            .repo-details-card {
+                position: relative;
+                width: 100%;
+                margin-bottom: 15px;
+                margin-top: 10px;
+                right: 0; /* 小屏幕上重置右侧位置 */
+            }
+
+            .breadcrumb-container {
+                flex-direction: column;
+            }
+
+            .breadcrumb {
+                max-width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
         /* SVG 图标样式 */
         .svg-icon {
             display: inline-block;
@@ -262,6 +358,34 @@
                 transform: translateX(22px);
             }
         }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6c757d;
+            z-index: 20; /* 确保按钮始终在最上层 */
+        }
+
+        .copy-button:hover {
+            color: #212529;
+        }
+
+        .copy-feedback {
+            position: absolute;
+            top: 10px;
+            right: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: none;
+            z-index: 100;
+        }
 	</style>
 	<!-- SVG 图标定义 -->
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -281,13 +405,32 @@
 		<symbol id="icon-spinner" viewBox="0 0 512 512">
 			<path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
 		</symbol>
-		<!-- 打开的文件夹图标 -->
-		<symbol id="icon-folder-open" viewBox="0 0 576 512">
-			<path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z"/>
+		<!-- JAR文件图标 -->
+		<symbol id="icon-jar" viewBox="0 0 32 32">
+			<path d="M12.7,23.56s-1.07.622.761.833a16.023,16.023,0,0,0,5.8-.246A10.088,10.088,0,0,0,20.8,24.9c-5.481,2.349-12.405-.136-8.1-1.339"
+				  style="fill:#5382a1"/>
+			<path d="M12.026,20.494s-1.2.888.633,1.078a22.618,22.618,0,0,0,7.481-.359,3.32,3.32,0,0,0,1.152.7c-6.627,1.938-14.009.153-9.266-1.421"
+				  style="fill:#5382a1"/>
+			<path d="M17.673,15.294a2.051,2.051,0,0,1-.355,2.954s3.429-1.77,1.854-3.987c-1.471-2.067-2.6-3.095,3.508-6.636,0,0-9.586,2.394-5.007,7.669"
+				  style="fill:#e76f00"/>
+			<path d="M24.922,25.827s.792.652-.872,1.157c-3.164.958-13.168,1.248-15.948.038-1-.435.874-1.038,1.464-1.164a3.8,3.8,0,0,1,.966-.108c-1.111-.783-7.181,1.537-3.083,2.2,11.176,1.812,20.372-.816,17.473-2.124"
+				  style="fill:#5382a1"/>
+			<path d="M13.211,17.318s-5.089,1.209-1.8,1.648a38.225,38.225,0,0,0,6.731-.072c2.106-.178,4.221-.555,4.221-.555a8.934,8.934,0,0,0-1.28.685C15.913,20.382,5.93,19.75,8.8,18.359a9.629,9.629,0,0,1,4.407-1.042"
+				  style="fill:#5382a1"/>
+			<path d="M22.34,22.421c5.253-2.73,2.824-5.353,1.129-5a3.932,3.932,0,0,0-.6.161.957.957,0,0,1,.449-.346c3.354-1.179,5.933,3.478-1.083,5.322a.458.458,0,0,0,.106-.138"
+				  style="fill:#5382a1"/>
+			<path d="M19.172,1.906s2.909,2.91-2.759,7.386c-4.546,3.59-1.037,5.637,0,7.975-2.653-2.394-4.6-4.5-3.294-6.463,1.917-2.879,7.229-4.275,6.056-8.9"
+				  style="fill:#e76f00"/>
+			<path d="M13.727,29.818c5.042.323,12.786-.179,12.969-2.565,0,0-.353.9-4.167,1.623a41.458,41.458,0,0,1-12.76.2s.645.533,3.959.746"
+				  style="fill:#5382a1"/>
 		</symbol>
 		<!-- 文件夹图标 -->
 		<symbol id="icon-folder" viewBox="0 0 512 512">
 			<path d="M64 480H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H288c-10.1 0-19.6-4.7-25.6-12.8L243.2 57.6C231.1 41.5 212.1 32 192 32H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64z"/>
+		</symbol>
+		<!-- 打开的文件夹图标 -->
+		<symbol id="icon-folder-open" viewBox="0 0 576 512">
+			<path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z"/>
 		</symbol>
 		<!-- 代码文件图标 -->
 		<symbol id="icon-file-code" viewBox="0 0 384 512">
@@ -405,7 +548,7 @@
 		}
 		// 从URL哈希中提取目录路径
 		function getCurrentDirFromHash() {
-			// 获取URL中的哈希部分（去掉开头的#/ 或 #）
+			// 获取URL中的哈希部件（去掉开头的#/ 或 #）
 			let hashPath = '';
 			if (window.location.hash.startsWith('#/')) {
 				hashPath = window.location.hash.substring(2);
@@ -436,6 +579,8 @@
 		}
 		// 获取当前目录
 		let currentDir = normalizePath(getCurrentDirFromHash());
+		// 保存当前选中的卡片标签状态
+		let activeCardTab = 'maven'; // 默认选中maven标签
 		// 处理导航链接的点击事件
 		function handleNavigationClick(event, path) {
 			event.preventDefault(); // 阻止默认的链接行为
@@ -460,7 +605,7 @@
 			// 从动态生成的仓库结构数据中读取内容
 			return scanDirectoryFromData(dirPath);
 		}
-		// 从数据中获取目录内容
+		// 从数据中提取目录内容
 		function scanDirectoryFromData(dirPath) {
 			// 使用全局的 repoStructure 变量
 			if (window.repoStructure) {
@@ -493,17 +638,19 @@
 				case 'sha256':
 				case 'sha512':
 					return '<svg class="svg-icon file-icon sha1"><use xlink:href="#icon-shield-alt"></use></svg>';
+				case 'jar':
+					return '<svg class="svg-icon file-icon jar"><use xlink:href="#icon-jar"></use></svg>';
 				default:
 					return '<svg class="svg-icon file-icon"><use xlink:href="#icon-file"></use></svg>';
 			}
 		}
 		// 生成可点击的路径标题
 		function generateClickablePath(path) {
-			if (!path) return '<h2><svg class="svg-icon"><use xlink:href="#icon-folder-open"></use></svg> 根目录</h2>';
+			if (!path) return '<div class="breadcrumb-container"><div class="breadcrumb"><h2><svg class="svg-icon"><use xlink:href="#icon-folder-open"></use></svg> Index of</h2></div></div>';
 			const parts = path.split('/');
-			let html = '<h2><svg class="svg-icon"><use xlink:href="#icon-folder-open"></use></svg> ';
+			let html = '<div class="breadcrumb-container"><div class="breadcrumb"><h2><svg class="svg-icon"><use xlink:href="#icon-folder-open"></use></svg> ';
 			// 为根目录添加正确的哈希路由链接
-			html += `<a href="#" class="breadcrumb-link" data-path="">根目录</a>`;
+			html += `<a href="#" class="breadcrumb-link" data-path="">Index of</a>`;
 			let currentPath = '';
 			for (const part of parts) {
 				if (!part) continue;
@@ -511,7 +658,7 @@
 				// 为每个路径部分添加正确的哈希路由链接
 				html += ` / <a href="#/${currentPath}" class="breadcrumb-link" data-path="${currentPath}">${part}</a>`;
 			}
-			html += '</h2>';
+			html += '</h2></div></div>';
 			return html;
 		}
 		// 生成内容HTML
@@ -522,6 +669,8 @@
 			let html = '';
 			// 添加可点击的路径标题
 			html += generateClickablePath(currentDir);
+			// 所有页面都显示卡片，但内容根据路径不同而不同
+			html += await generateBuildScriptCard(currentDir);
 			// 列出文件和目录
 			html += '<ul class="file-list">';
 			// 如果在子目录中，添加返回上层目录项
@@ -586,11 +735,367 @@
 			// 为面包屑导航链接添加点击事件处理
 			document.querySelectorAll('.breadcrumb-link').forEach(link => {
 				link.addEventListener('click', function (event) {
-					// ���取存储在data-path属性中的路径
 					const path = this.getAttribute('data-path');
 					handleNavigationClick(event, path);
 				});
 			});
+			// 初始化卡片事件（选项卡切换和复制功能）
+			initializeCardEvents();
+		}
+		// 初始化事件监听器 - 在renderContent完成后调用
+		function initializeCardEvents() {
+			// 处理选项卡切换
+			document.querySelectorAll('.card-tab').forEach(tab => {
+				tab.addEventListener('click', function () {
+					// 保存当前选中的标签
+					activeCardTab = this.getAttribute('data-tab');
+					// 移除所有选项卡的active类
+					document.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+					// 添加当前选项卡的active类
+					this.classList.add('active');
+					// 隐藏所有内容
+					document.querySelectorAll('.card-content').forEach(content => {
+						content.style.display = 'none';
+					});
+					// 显示当前选定的内容
+					const tabName = this.getAttribute('data-tab');
+					const contentId = tabName + '-content';
+					const contentElement = document.getElementById(contentId);
+					if (contentElement) {
+						contentElement.style.display = 'block';
+					}
+				});
+			});
+			// 恢复之前选中的标签状态
+			const savedTab = document.querySelector(`.card-tab[data-tab="${activeCardTab}"]`);
+			if (savedTab) {
+				// 移除所有active状态
+				document.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+				document.querySelectorAll('.card-content').forEach(content => {
+					content.style.display = 'none';
+				});
+				// 设置保存的标签为active
+				savedTab.classList.add('active');
+				const contentId = activeCardTab + '-content';
+				const contentElement = document.getElementById(contentId);
+				if (contentElement) {
+					contentElement.style.display = 'block';
+				}
+			}
+			// 复制按钮功能
+			document.querySelectorAll('.copy-button').forEach(button => {
+				button.addEventListener('click', async function (e) {
+					e.preventDefault();
+					const content = this.getAttribute('data-content');
+					try {
+						// 使用现代剪贴板API
+						await navigator.clipboard.writeText(content);
+						// 显示复制成功反馈
+						const feedbackElement = this.nextElementSibling;
+						if (feedbackElement && feedbackElement.classList.contains('copy-feedback')) {
+							feedbackElement.style.display = 'block';
+							// 2秒后隐藏反馈
+							setTimeout(() => {
+								feedbackElement.style.display = 'none';
+							}, 2000);
+						}
+					} catch (err) {
+						console.error('复制失败:', err);
+						alert('复制失败，请手动复制。');
+					}
+				});
+			});
+		}
+		// 从maven-metadata.xml中解析最新版本
+		async function getLatestVersionFromMetadata(currentDir) {
+			try {
+				const metadataPath = `${currentDir}/maven-metadata.xml`;
+				const response = await fetch(metadataPath);
+				if (!response.ok) return "${latest.version}";
+				const text = await response.text();
+				const parser = new DOMParser();
+				const xmlDoc = parser.parseFromString(text, "text/xml");
+				// 首先尝试从release标签获取版本
+				let latestVersion = xmlDoc.querySelector('release')?.textContent;
+				// 如果没有release标签，尝试使用latest标签
+				if (!latestVersion) {
+					latestVersion = xmlDoc.querySelector('latest')?.textContent;
+				}
+				// 如果仍然没有，尝试从versioning/versions中获取最后一个版本
+				if (!latestVersion) {
+					const versions = Array.from(xmlDoc.querySelectorAll('version')).map(v => v.textContent);
+					if (versions.length > 0) {
+						// 尝试按照语义化版本排序
+						versions.sort((a, b) => {
+							// 移除可能的-SNAPSHOT后缀进行比较
+							const cleanA = a.replace('-SNAPSHOT', '');
+							const cleanB = b.replace('-SNAPSHOT', '');
+							const partsA = cleanA.split('.');
+							const partsB = cleanB.split('.');
+							for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+								const numA = parseInt(partsA[i] || '0');
+								const numB = parseInt(partsB[i] || '0');
+								if (numA !== numB) return numB - numA; // 降序排列，最新的在前
+							}
+							// 如果版本号相同但一个是SNAPSHOT，非SNAPSHOT的优先
+							if (a.includes('-SNAPSHOT') && !b.includes('-SNAPSHOT')) return 1;
+							if (!a.includes('-SNAPSHOT') && b.includes('-SNAPSHOT')) return -1;
+							return 0;
+						});
+						latestVersion = versions[0]; // 取排序后的第一个版本
+					}
+				}
+				// 如果仍然没找到版本号，检查是否是SNAPSHOT版本的目录
+				if (!latestVersion && currentDir.includes('-SNAPSHOT')) {
+					// 尝试获取目录下的所有文件，并按修改时间排序找出最新的版本
+					const dirResponse = await fetch(`${currentDir}/`);
+					if (dirResponse.ok) {
+						const directoryHtml = await dirResponse.text();
+						// 解析目录HTML，提取文件名和时间戳
+						// 这是一个简化处理，实际情况可能需要调整
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(directoryHtml, 'text/html');
+						const fileElements = Array.from(doc.querySelectorAll('a[href]'));
+						// 找出带有时间戳的文件名，通常是类似 artifactId-version-timestamp-buildnumber 格式
+						const snapshotFiles = fileElements
+							.map(el => el.getAttribute('href'))
+							.filter(href => href && !href.endsWith('/') && href.includes('-20'));
+						if (snapshotFiles.length > 0) {
+							// 假设文件按时间顺序列出，取最后一个
+							const latestFile = snapshotFiles[snapshotFiles.length - 1];
+							// 从文件名提取出带时间戳的版本
+							const match = latestFile.match(/-([\d.]+-\d{8}\.\d{6}-\d+)/);
+							if (match && match[1]) {
+								latestVersion = match[1];
+							} else {
+								// 如果无法解析时间戳，使用基础版本号
+								latestVersion = currentDir.split('/').pop();
+							}
+						}
+					}
+				}
+				return latestVersion || '${latest.version}';
+			} catch (error) {
+				console.error('获取最新版本失败:', error);
+				return '${latest.version}';
+			}
+		}
+		// 生成构建脚本卡片
+		async function generateBuildScriptCard(currentDir) {
+			// 获取当前URL信息
+			const currentUrl = window.location.href;
+			const baseRepoUrl = currentUrl.substring(0, currentUrl.indexOf('/index.html')) || currentUrl.replace(/\/+$/, '');
+			// 从URL中提取仓库信息用于生成id和name
+			function extractRepoInfo(url) {
+				try {
+					const urlObj = new URL(url);
+					const hostname = urlObj.hostname;
+					const pathname = urlObj.pathname.replace(/\/+$/, ''); // 移除末尾斜杠
+					// 生成仓库ID - 使用域名和路径的组合，替换特殊字符
+					const repoId = (hostname + pathname).replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+					// 生成仓库名称 - 使用域名作为主要名称
+					const repoName = hostname;
+					return {repoId, repoName};
+				} catch (error) {
+					// 如果URL解析失败，使用默认值
+					return {repoId: 'maven-repo', repoName: 'Maven Repository'};
+				}
+			}
+			const {repoId, repoName} = extractRepoInfo(baseRepoUrl);
+			// 解析路径信息
+			let pathComponents = currentDir.split('/').filter(part => part);
+			let repoType = '';
+			let isRootLevel = pathComponents.length === 0;
+			let isRepoTypeLevel = pathComponents.length === 1 && ['plugins', 'releases', 'snapshots'].includes(pathComponents[0]);
+			// 确定仓库类型 - 检查路径中是否包含仓库根目录
+			if (pathComponents.length > 0) {
+				const repoRoots = ['plugins', 'releases', 'snapshots'];
+				for (let i = 0; i < pathComponents.length; i++) {
+					if (repoRoots.includes(pathComponents[i])) {
+						repoType = pathComponents[i];
+						break;
+					}
+				}
+			}
+			// 提前检查是否在具体版本目录
+			let isVersionDir = false;
+			if (pathComponents.length > 0) {
+				const versionPattern = /^\d+(\.\d+)*(-\w+)*(-\d{8}\.\d{6}-\d+)?$/;
+				isVersionDir = pathComponents.length > 0 && versionPattern.test(String(pathComponents[pathComponents.length - 1]));
+			}
+			// 判断是否在仓库类型目录下（包括子目录），但还没到具体的Maven项目
+			let isInRepoTypeSubdir = false;
+			if (repoType && !isRootLevel && !isVersionDir) {
+				// 检查当前目录是否包含maven-metadata.xml
+				// 如果不包含，说明还在中间目录，应该显示仓库配置
+				const files = await loadDirectoryContents(currentDir);
+				const hasMavenMetadata = files.some(file => file.name === 'maven-metadata.xml');
+				if (!hasMavenMetadata) {
+					isInRepoTypeSubdir = true;
+				}
+			}
+			// HTML转义函数
+			function escapeHtml(text) {
+				const div = document.createElement('div');
+				div.textContent = text;
+				return div.innerHTML;
+			}
+			// 生成复制按钮的公共函数
+			function createCopyButton(content) {
+				return `
+				<button class="copy-button" data-content="${content.replace(/"/g, '&quot;')}" title="Copy">
+					<svg class="svg-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+					</svg>
+				</button>
+				<div class="copy-feedback">Copied!</div>`;
+			}
+			// 生成内容区域的公共函数
+			function createContentSection(id, content, isActive = false) {
+				const displayStyle = isActive ? '' : 'style="display:none;"';
+				return `
+				<div class="card-content" id="${id}" ${displayStyle}>
+					<pre>${escapeHtml(content)}</pre>
+					${createCopyButton(content)}
+				</div>`;
+			}
+			// 根据路径层级生成不同的卡片内容
+			if (isRootLevel) {
+				// 根目录：显示仓库配置
+				const mavenRepository = `<repository>
+    <id>${repoId}</id>
+    <name>${repoName}</name>
+    <url>${baseRepoUrl}/<repository></url>
+</repository>`;
+				const gradleKotlinRepository = `repositories {
+    maven("${baseRepoUrl}/<repository>")
+}`;
+				const gradleGroovyRepository = `repositories {
+    maven { url '${baseRepoUrl}/<repository>'}
+}`;
+				const sbtRepository = `resolvers += "${repoName}" at "${baseRepoUrl}/<repository>"`;
+				return `
+				<div class="repo-details-card">
+					<div class="card-tabs">
+						<div class="card-tab active" data-tab="maven">Maven</div>
+						<div class="card-tab" data-tab="gradle-kotlin">Gradle Kotlin</div>
+						<div class="card-tab" data-tab="gradle-groovy">Gradle Groovy</div>
+						<div class="card-tab" data-tab="sbt">SBT</div>
+					</div>
+					${createContentSection('maven-content', mavenRepository, true)}
+					${createContentSection('gradle-kotlin-content', gradleKotlinRepository)}
+					${createContentSection('gradle-groovy-content', gradleGroovyRepository)}
+					${createContentSection('sbt-content', sbtRepository)}
+				</div>`;
+			} else if (isRepoTypeLevel || isInRepoTypeSubdir) {
+				// 仓库类型目录或其子目录：显示特定仓库的配置
+				const repoUrl = baseRepoUrl + '/' + repoType;
+				const typeRepoName = `${repoName} ${repoType.charAt(0).toUpperCase() + repoType.slice(1)}`;
+				const mavenRepository = `<repository>
+    <id>${repoId}-${repoType}</id>
+    <name>${typeRepoName}</name>
+    <url>${repoUrl}</url>
+</repository>`;
+				const gradleKotlinRepository = `repositories {
+    maven {
+        url = uri("${repoUrl}")
+    }
+}`;
+				const gradleGroovyRepository = `repositories {
+    maven {
+        url '${repoUrl}'
+    }
+}`;
+				const sbtRepository = `resolvers += "${typeRepoName}" at "${repoUrl}"`;
+				return `
+				<div class="repo-details-card">
+					<div class="card-tabs">
+						<div class="card-tab active" data-tab="maven">Maven</div>
+						<div class="card-tab" data-tab="gradle-kotlin">Gradle Kotlin</div>
+						<div class="card-tab" data-tab="gradle-groovy">Gradle Groovy</div>
+						<div class="card-tab" data-tab="sbt">SBT</div>
+					</div>
+					${createContentSection('maven-content', mavenRepository, true)}
+					${createContentSection('gradle-kotlin-content', gradleKotlinRepository)}
+					${createContentSection('gradle-groovy-content', gradleGroovyRepository)}
+					${createContentSection('sbt-content', sbtRepository)}
+				</div>`;
+			} else {
+				// 具体项目目录：显示依赖配置
+				// 从路径解析groupId和artifactId
+				let artifactId = pathComponents[pathComponents.length - 1];
+				let groupIdParts = [];
+				// 找到仓库根目录的索引
+				let repoRootIndex = -1;
+				const repoRoots = ['plugins', 'releases', 'snapshots'];
+				for (let i = 0; i < pathComponents.length; i++) {
+					if (repoRoots.includes(pathComponents[i])) {
+						repoRootIndex = i;
+						break;
+					}
+				}
+				// 从仓库根目录之后到artifactId之前的所有部分组成groupId
+				if (repoRootIndex !== -1 && pathComponents.length > repoRootIndex + 1) {
+					groupIdParts = pathComponents.slice(repoRootIndex + 1, pathComponents.length - 1);
+				}
+				// 转换为groupId格式 (使用点分隔)
+				let groupId = groupIdParts.join('.');
+				// 如果没有找到有效的groupId，可能是特殊情况，使用一个兜底处理
+				if (!groupId && artifactId) {
+					// 尝试从artifactId中解析，假设它可能包含组织名称
+					const parts = artifactId.split('.');
+					if (parts.length > 1) {
+						artifactId = parts.pop();
+						groupId = parts.join('.');
+					}
+				}
+				// 检查是否在具体版本目录
+				const versionPattern = /^\d+\.\d+(\.\d+)?(-\w+)?$/;
+				const isVersionDir = typeof artifactId === 'string' && versionPattern.test(artifactId);
+				let version;
+				if (isVersionDir) {
+					// 如果在版本目录，使用当前目录名作为版本
+					version = artifactId;
+					// 获取上级目录作为artifactId
+					if (pathComponents.length > 1) {
+						artifactId = pathComponents[pathComponents.length - 2];
+						// 重新计算groupId
+						if (repoRootIndex !== -1 && pathComponents.length > repoRootIndex + 2) {
+							groupIdParts = pathComponents.slice(repoRootIndex + 1, pathComponents.length - 2);
+							groupId = groupIdParts.join('.');
+						}
+					}
+				} else {
+					// 如果不在版本目录，获取最新版本
+					version = await getLatestVersionFromMetadata(currentDir);
+				}
+				const repoUrl = baseRepoUrl + (repoType ? '/' + repoType : '');
+				// 生成不同构建系统的依赖代码片段
+				const mavenDependency = `<dependency>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+</dependency>`;
+				const gradleKotlinDependency = `repositories { maven { url = uri("${repoUrl}") } }
+implementation("${groupId}:${artifactId}:${version}")`;
+				const gradleGroovyDependency = `repositories { maven("${repoUrl}") }
+implementation '${groupId}:${artifactId}:${version}'`;
+				const sbtDependency = `resolvers += "Maven Repository" at "${repoUrl}"
+libraryDependencies += "${groupId}" % "${artifactId}" % "${version}"`;
+				return `
+				<div class="repo-details-card">
+					<div class="card-tabs">
+						<div class="card-tab active" data-tab="maven">Maven</div>
+						<div class="card-tab" data-tab="gradle-kotlin">Gradle Kotlin</div>
+						<div class="card-tab" data-tab="gradle-groovy">Gradle Groovy</div>
+						<div class="card-tab" data-tab="sbt">SBT</div>
+					</div>
+					${createContentSection('maven-content', mavenDependency, true)}
+					${createContentSection('gradle-kotlin-content', gradleKotlinDependency)}
+					${createContentSection('gradle-groovy-content', gradleGroovyDependency)}
+					${createContentSection('sbt-content', sbtDependency)}
+				</div>`;
+			}
 		}
 		// 初始化页面由外部JSON文件加载后调用
 		window.renderContent = renderContent;
