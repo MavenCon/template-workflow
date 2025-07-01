@@ -887,14 +887,16 @@
 			const baseRepoUrl = currentUrl.substring(0, currentUrl.indexOf('/index.html')) || currentUrl.replace(/\/+$/, '');
 			// 从baseRepoUrl中提取真正的仓库根URL（移除路径中的仓库类型部分）
 			function getRepoRootUrl(url) {
+				// 首先移除URL中的哈希片段，因为哈希不是实际的服务器路径
+				const urlWithoutHash = url.split('#')[0];
 				const repoTypes = ['plugins', 'releases', 'snapshots'];
 				for (const type of repoTypes) {
-					const typeIndex = url.lastIndexOf('/' + type);
+					const typeIndex = urlWithoutHash.lastIndexOf('/' + type);
 					if (typeIndex !== -1) {
-						return url.substring(0, typeIndex);
+						return urlWithoutHash.substring(0, typeIndex);
 					}
 				}
-				return url;
+				return urlWithoutHash;
 			}
 			const repoRootUrl = getRepoRootUrl(baseRepoUrl);
 			// 从URL中提取仓库信息用于生成id和name
