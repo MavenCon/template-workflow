@@ -885,6 +885,18 @@
 			// 获取当前URL信息
 			const currentUrl = window.location.href;
 			const baseRepoUrl = currentUrl.substring(0, currentUrl.indexOf('/index.html')) || currentUrl.replace(/\/+$/, '');
+			// 从baseRepoUrl中提取真正的仓库根URL（移除路径中的仓库类型部分）
+			function getRepoRootUrl(url) {
+				const repoTypes = ['plugins', 'releases', 'snapshots'];
+				for (const type of repoTypes) {
+					const typeIndex = url.lastIndexOf('/' + type);
+					if (typeIndex !== -1) {
+						return url.substring(0, typeIndex);
+					}
+				}
+				return url;
+			}
+			const repoRootUrl = getRepoRootUrl(baseRepoUrl);
 			// 从URL中提取仓库信息用于生成id和name
 			function extractRepoInfo(url) {
 				try {
@@ -901,7 +913,7 @@
 					return {repoId: 'maven-repo', repoName: 'Maven Repository'};
 				}
 			}
-			const {repoId, repoName} = extractRepoInfo(baseRepoUrl);
+			const {repoId, repoName} = extractRepoInfo(repoRootUrl);
 			// 解析路径信息
 			let pathComponents = currentDir.split('/').filter(part => part);
 			let repoType = '';
@@ -965,15 +977,15 @@
 				const mavenRepository = `<repository>
     <id>${repoId}</id>
     <name>${repoName}</name>
-    <url>${baseRepoUrl}/<repository></url>
+    <url>${repoRootUrl}/<repository></url>
 </repository>`;
 				const gradleKotlinRepository = `repositories {
-    maven("${baseRepoUrl}/<repository>")
+    maven("${repoRootUrl}/<repository>")
 }`;
 				const gradleGroovyRepository = `repositories {
-    maven { url '${baseRepoUrl}/<repository>'}
+    maven { url '${repoRootUrl}/<repository>'}
 }`;
-				const sbtRepository = `resolvers += "${repoName}" at "${baseRepoUrl}/<repository>"`;
+				const sbtRepository = `resolvers += "${repoName}" at "${repoRootUrl}/<repository>"`;
 				return `
 				<div class="repo-details-card">
 					<div class="card-tabs">
@@ -989,7 +1001,7 @@
 				</div>`;
 			} else if (isRepoTypeLevel || isInRepoTypeSubdir) {
 				// 仓库类型目录或其子目录：显示特定仓库的配置
-				const repoUrl = baseRepoUrl + '/' + repoType;
+				const repoUrl = repoRootUrl + '/' + repoType;
 				const typeRepoName = `${repoName} ${repoType.charAt(0).toUpperCase() + repoType.slice(1)}`;
 				const mavenRepository = `<repository>
     <id>${repoId}-${repoType}</id>
@@ -1069,7 +1081,7 @@
 					// 如果不在版本目录，获取最新版本
 					version = await getLatestVersionFromMetadata(currentDir);
 				}
-				const repoUrl = baseRepoUrl + (repoType ? '/' + repoType : '');
+				const repoUrl = repoRootUrl + (repoType ? '/' + repoType : '');
 				// 生成不同构建系统的依赖代码片段
 				const mavenDependency = `<dependency>
     <groupId>${groupId}</groupId>
