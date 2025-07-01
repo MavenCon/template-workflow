@@ -2,533 +2,451 @@
   "": [
     {
       "name": "plugins",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.394Z",
+      "size": 0
     },
     {
       "name": "releases",
-      "lastModified": "2025-06-30T16:35:42Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     },
     {
       "name": "snapshots",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 0
     }
   ],
   "plugins": [
     {
       "name": "io",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.394Z",
+      "size": 0
     }
   ],
   "plugins/io": [
     {
       "name": "github",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.394Z",
+      "size": 0
     }
   ],
   "plugins/io/github": [
     {
       "name": "forgestove",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.394Z",
+      "size": 0
     }
   ],
   "plugins/io/github/forgestove": [
     {
       "name": "ModAccessor",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     }
   ],
   "plugins/io/github/forgestove/ModAccessor": [
     {
       "name": "1.0.0",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 0
     },
     {
       "name": "io.github.forgestove.modaccessor.gradle.plugin",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     },
     {
       "name": "maven-metadata.xml",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 351,
-      "hash": "c437022a"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 338
     },
     {
       "name": "maven-metadata.xml.md5",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 32,
-      "hash": "d1da1e2e"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 32
     },
     {
       "name": "maven-metadata.xml.sha1",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 40,
-      "hash": "e7534bc6"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 40
     },
     {
       "name": "maven-metadata.xml.sha256",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 64,
-      "hash": "7e974a7d"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 64
     },
     {
       "name": "maven-metadata.xml.sha512",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 128,
-      "hash": "cf7778bd"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 128
     }
   ],
   "plugins/io/github/forgestove/ModAccessor/1.0.0": [
     {
       "name": "ModAccessor-1.0.0-javadoc.jar",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 82298,
-      "hash": "3fc80b5d"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 82298
     },
     {
       "name": "ModAccessor-1.0.0-javadoc.jar.md5",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 32,
-      "hash": "91f5d6cd"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 32
     },
     {
       "name": "ModAccessor-1.0.0-javadoc.jar.sha1",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 40,
-      "hash": "c85632a2"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 40
     },
     {
       "name": "ModAccessor-1.0.0-javadoc.jar.sha256",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 64,
-      "hash": "c99a2377"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 64
     },
     {
       "name": "ModAccessor-1.0.0-javadoc.jar.sha512",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 128,
-      "hash": "36d9bd83"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 128
     },
     {
       "name": "ModAccessor-1.0.0-sources.jar",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 4241,
-      "hash": "fc90000b"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 4241
     },
     {
       "name": "ModAccessor-1.0.0-sources.jar.md5",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 32,
-      "hash": "19d29043"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 32
     },
     {
       "name": "ModAccessor-1.0.0-sources.jar.sha1",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 40,
-      "hash": "180bcf5b"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 40
     },
     {
       "name": "ModAccessor-1.0.0-sources.jar.sha256",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 64,
-      "hash": "926b8695"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 64
     },
     {
       "name": "ModAccessor-1.0.0-sources.jar.sha512",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 128,
-      "hash": "44f35167"
+      "lastModified": "2025-07-01T14:40:44.395Z",
+      "size": 128
     },
     {
       "name": "ModAccessor-1.0.0.jar",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 35951327,
-      "hash": "9271a56c"
+      "lastModified": "2025-07-01T14:40:44.539Z",
+      "size": 35951327
     },
     {
       "name": "ModAccessor-1.0.0.jar.md5",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 32,
-      "hash": "45c8d713"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 32
     },
     {
       "name": "ModAccessor-1.0.0.jar.sha1",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 40,
-      "hash": "49dd1ca3"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 40
     },
     {
       "name": "ModAccessor-1.0.0.jar.sha256",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 64,
-      "hash": "6b21a9ff"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 64
     },
     {
       "name": "ModAccessor-1.0.0.jar.sha512",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 128,
-      "hash": "8b822bc8"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 128
     },
     {
       "name": "ModAccessor-1.0.0.module",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 2648,
-      "hash": "df7587e2"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 2648
     },
     {
       "name": "ModAccessor-1.0.0.module.md5",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 32,
-      "hash": "22a5d5ee"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 32
     },
     {
       "name": "ModAccessor-1.0.0.module.sha1",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 40,
-      "hash": "cdd9f32f"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 40
     },
     {
       "name": "ModAccessor-1.0.0.module.sha256",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 64,
-      "hash": "0feaa02e"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 64
     },
     {
       "name": "ModAccessor-1.0.0.module.sha512",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 128,
-      "hash": "09ac143e"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 128
     },
     {
       "name": "ModAccessor-1.0.0.pom",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 775,
-      "hash": "50d811e0"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 762
     },
     {
       "name": "ModAccessor-1.0.0.pom.md5",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 32,
-      "hash": "b5bf5208"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 32
     },
     {
       "name": "ModAccessor-1.0.0.pom.sha1",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 40,
-      "hash": "70cc4de5"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 40
     },
     {
       "name": "ModAccessor-1.0.0.pom.sha256",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 64,
-      "hash": "037a480b"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 64
     },
     {
       "name": "ModAccessor-1.0.0.pom.sha512",
-      "lastModified": "2025-06-26T16:01:34Z",
-      "size": 128,
-      "hash": "fecf4098"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 128
     }
   ],
   "plugins/io/github/forgestove/ModAccessor/io.github.forgestove.modaccessor.gradle.plugin": [
     {
       "name": "1.0.0",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     },
     {
       "name": "maven-metadata.xml",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 398,
-      "hash": "37a1e2a9"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 385
     },
     {
       "name": "maven-metadata.xml.md5",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 32,
-      "hash": "7355e4d5"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 32
     },
     {
       "name": "maven-metadata.xml.sha1",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 40,
-      "hash": "54924daa"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 40
     },
     {
       "name": "maven-metadata.xml.sha256",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 64,
-      "hash": "570c1960"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 64
     },
     {
       "name": "maven-metadata.xml.sha512",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 128,
-      "hash": "63c1a075"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 128
     }
   ],
   "plugins/io/github/forgestove/ModAccessor/io.github.forgestove.modaccessor.gradle.plugin/1.0.0": [
     {
       "name": "io.github.forgestove.modaccessor.gradle.plugin-1.0.0.pom",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 845,
-      "hash": "bffc86b5"
+      "lastModified": "2025-07-01T14:40:44.541Z",
+      "size": 828
     },
     {
       "name": "io.github.forgestove.modaccessor.gradle.plugin-1.0.0.pom.md5",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 32,
-      "hash": "6974b671"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 32
     },
     {
       "name": "io.github.forgestove.modaccessor.gradle.plugin-1.0.0.pom.sha1",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 40,
-      "hash": "4d01562d"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 40
     },
     {
       "name": "io.github.forgestove.modaccessor.gradle.plugin-1.0.0.pom.sha256",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 64,
-      "hash": "5dfff663"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 64
     },
     {
       "name": "io.github.forgestove.modaccessor.gradle.plugin-1.0.0.pom.sha512",
-      "lastModified": "2025-06-26T16:01:31Z",
-      "size": 128,
-      "hash": "89c67480"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 128
     }
   ],
   "releases": [
     {
       "name": "io",
-      "lastModified": "2025-06-30T16:35:42Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     }
   ],
   "releases/io": [
     {
       "name": "github",
-      "lastModified": "2025-06-30T16:35:42Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     }
   ],
   "releases/io/github": [
     {
       "name": "forgestove",
-      "lastModified": "2025-06-30T16:39:35Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.542Z",
+      "size": 0
     }
   ],
   "releases/io/github/forgestove": [
     {
       "name": "HexSync",
-      "lastModified": "2025-06-30T16:39:41Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 0
     }
   ],
   "releases/io/github/forgestove/HexSync": [
     {
       "name": "0.5.9",
-      "lastModified": "2025-06-30T16:39:35Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 0
     },
     {
       "name": "maven-metadata.xml",
-      "lastModified": "2025-06-30T16:39:10Z",
-      "size": 347,
-      "hash": "c1c08ed2"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 334
     }
   ],
   "releases/io/github/forgestove/HexSync/0.5.9": [
     {
       "name": "HexSync-0.5.9.jar",
-      "lastModified": "2025-06-30T16:39:10Z",
-      "size": 3715663,
-      "hash": "a0c002a3"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 3715663
     },
     {
       "name": "HexSync-0.5.9.pom",
-      "lastModified": "2025-06-30T16:39:10Z",
-      "size": 409,
-      "hash": "9a2a6db1"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 401
     }
   ],
   "snapshots": [
     {
       "name": "org",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 0
     }
   ],
   "snapshots/org": [
     {
       "name": "test",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 0
     }
   ],
   "snapshots/org/test": [
     {
       "name": "testMavenCon",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 0
     }
   ],
   "snapshots/org/test/testMavenCon": [
     {
       "name": "1.0-SNAPSHOT",
-      "lastModified": "2025-06-28T07:18:19Z",
-      "size": 0,
-      "hash": "dir"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 0
     },
     {
       "name": "maven-metadata.xml",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 324,
-      "hash": "d5b7adc3"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 312
     },
     {
       "name": "maven-metadata.xml.md5",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 32,
-      "hash": "485d7893"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 32
     },
     {
       "name": "maven-metadata.xml.sha1",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 40,
-      "hash": "caae56da"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 40
     },
     {
       "name": "maven-metadata.xml.sha256",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 64,
-      "hash": "2d0d317e"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 64
     },
     {
       "name": "maven-metadata.xml.sha512",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 128,
-      "hash": "7e4b5d31"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 128
     }
   ],
   "snapshots/org/test/testMavenCon/1.0-SNAPSHOT": [
     {
       "name": "maven-metadata.xml",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 613,
-      "hash": "d34bfb13"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 593
     },
     {
       "name": "maven-metadata.xml.md5",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 32,
-      "hash": "699a3a49"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 32
     },
     {
       "name": "maven-metadata.xml.sha1",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 40,
-      "hash": "0c5ef0d2"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 40
     },
     {
       "name": "maven-metadata.xml.sha256",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 64,
-      "hash": "81e74869"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 64
     },
     {
       "name": "maven-metadata.xml.sha512",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 128,
-      "hash": "8981b598"
+      "lastModified": "2025-07-01T14:40:44.558Z",
+      "size": 128
     },
     {
       "name": "testMavenCon-1.0-20250627.122334-1.pom",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 439,
-      "hash": "c3ec8e8e"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 430
     },
     {
       "name": "testMavenCon-1.0-20250627.122334-1.pom.md5",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 32,
-      "hash": "6f380dc2"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 32
     },
     {
       "name": "testMavenCon-1.0-20250627.122334-1.pom.sha1",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 40,
-      "hash": "96e1566f"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 40
     },
     {
       "name": "testMavenCon-1.0-20250627.122334-1.pom.sha256",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 64,
-      "hash": "fd90c364"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 64
     },
     {
       "name": "testMavenCon-1.0-20250627.122334-1.pom.sha512",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 128,
-      "hash": "7fec03d9"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 128
     },
     {
       "name": "testMavenCon-1.0-20250627.123247-2.pom",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 439,
-      "hash": "c3ec8e8e"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 430
     },
     {
       "name": "testMavenCon-1.0-20250627.123247-2.pom.md5",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 32,
-      "hash": "6f380dc2"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 32
     },
     {
       "name": "testMavenCon-1.0-20250627.123247-2.pom.sha1",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 40,
-      "hash": "96e1566f"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 40
     },
     {
       "name": "testMavenCon-1.0-20250627.123247-2.pom.sha256",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 64,
-      "hash": "fd90c364"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 64
     },
     {
       "name": "testMavenCon-1.0-20250627.123247-2.pom.sha512",
-      "lastModified": "2025-06-27T12:50:55Z",
-      "size": 128,
-      "hash": "7fec03d9"
+      "lastModified": "2025-07-01T14:40:44.559Z",
+      "size": 128
     }
   ]
 }
